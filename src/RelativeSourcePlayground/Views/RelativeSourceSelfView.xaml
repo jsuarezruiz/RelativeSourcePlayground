@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RelativeSourcePlayground.Views.RelativeSourceSelfView"
+    Title="RelativeSource Self"
+    BindingContext="{Binding Source={RelativeSource Self}, Path=Drink}">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="12">
+            <Label
+                Text="In this example, the page's BindingContext is bound to its own Drinks property."/>
+                <Grid
+                    Margin="24">
+                    <Grid>
+                        <Frame
+                            BackgroundColor="{Binding Color}"
+                            Style="{StaticResource DrinkPanelStyle}">
+                            <Grid
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="48" />
+                                </Grid.RowDefinitions>
+                                <Grid
+                                    Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Label 
+                                        Grid.Row="0"
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource DrinkTitleStyle}"/>
+                                    <Label 
+                                        Grid.Row="1"
+                                        Text="{Binding Description}"
+                                        Style="{StaticResource DrinkDescriptionStyle}" />
+                                </Grid>
+                                <Grid 
+                                    Grid.Row="1"
+                                    Style="{StaticResource DrinkImagePanelStyle}">
+                                    <Image
+                                        Source="{Binding Image}"
+                                        Style="{StaticResource DrinkImageStyle}"/>
+                                </Grid>
+                                <Grid 
+                                    Grid.Row="2">
+                                    <Button 
+                                        TextColor="{Binding Color}"
+                                        BorderColor="{Binding Color}"
+                                        Text="{Binding Price, StringFormat='{0:C}'}"
+                                        Style="{StaticResource BuyButtonStyle}"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

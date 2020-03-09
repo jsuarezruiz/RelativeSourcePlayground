@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RelativeSourcePlayground.Controls"
+    x:Class="RelativeSourcePlayground.Views.RelativeSourceTemplatedParentView"
+    Title="RelativeSource TemplatedParent">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ControlTemplate x:Key="DrinkCardViewControlTemplate">
+            <!--
+            In this example, the frame's BindingContext is set to the control instance that the template is applied to. Therefore,
+            the binding expressions resolve against the properties of each DrinkCardView object.
+            -->
+                <Grid>
+                    <Frame
+                        BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                        BackgroundColor="{Binding DrinkColor}"
+                        Style="{StaticResource DrinkPanelStyle}">
+                        <Grid
+                            HeightRequest="120"
+                            ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="80" />
+                            </Grid.ColumnDefinitions>
+                            <Grid
+                                Grid.Column="0"
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label 
+                                    Grid.Row="0"
+                                    Text="{Binding DrinkTitle}"
+                                    Style="{StaticResource DrinkTitleStyle}"/>
+                                <Label 
+                                    Grid.Row="1"
+                                    Text="{Binding DrinkDescription}"
+                                    Style="{StaticResource DrinkDescriptionStyle}" />
+                            </Grid>
+                            <Grid 
+                                Grid.Column="1"
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image
+                                    Source="{Binding DrinkImageSource}"/>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Margin="10">
+                <Label
+                    Text="In this example, the frame's BindingContext is set to the control instance that the template is applied to. Therefore, the binding expressions resolve against the properties of each DrinkCardView object."/>
+                <controls:DrinkCardView
+                    DrinkTitle="BRAZILIAN COFFEE"
+                    DrinkDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    DrinkColor="Maroon"
+                    DrinkImageSource="coffee.png"
+                    ControlTemplate="{StaticResource DrinkCardViewControlTemplate}" />
+                <controls:DrinkCardView
+                    DrinkTitle="HOT CHOCOLATE WITH MARSHMALLOWS"
+                    DrinkDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    DrinkColor="Wheat"
+                    DrinkImageSource="marshmallows.png"
+                    ControlTemplate="{StaticResource DrinkCardViewControlTemplate}" />
+                <controls:DrinkCardView
+                    DrinkTitle="MILK WITH MINT"
+                    DrinkDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    DrinkColor="Green"
+                    DrinkImageSource="plant.png"
+                    ControlTemplate="{StaticResource DrinkCardViewControlTemplate}" />
+                <controls:DrinkCardView
+                    DrinkTitle="STRAWBERRY MILK"
+                    DrinkDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    DrinkColor="Red"
+                    DrinkImageSource="strawberry.png"
+                    ControlTemplate="{StaticResource DrinkCardViewControlTemplate}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:RelativeSourcePlayground.ViewModels"
+    x:Class="RelativeSourcePlayground.Views.RelativeSourceFindAncestorView"
+    Title="RelativeSource FindAncestor">
+    <ContentPage.BindingContext>
+        <viewmodels:RelativeSourceViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout
+            Padding="12">
+            <Label
+                Text="In this example, the button's Command property is bound to the BuyCommand in its parent's view model."/>
+            <CollectionView
+                ItemsSource="{Binding Drinks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame
+                                BackgroundColor="{Binding Color}"
+                                Style="{StaticResource DrinkPanelStyle}">
+                                <Grid
+                                    HeightRequest="120"
+                                    ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="80" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid
+                                        Grid.Column="0"
+                                        RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label 
+                                            Grid.Row="0"
+                                            Text="{Binding Title}"
+                                            Style="{StaticResource DrinkTitleStyle}"/>
+                                        <Label 
+                                            Grid.Row="1"
+                                            Text="{Binding Description}"
+                                            Style="{StaticResource DrinkDescriptionStyle}" />
+                                    </Grid>
+                                    <Grid 
+                                        Grid.Column="1"
+                                        RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Image
+                                            Source="{Binding Image}"/>
+                                        <Button
+                                            Grid.Row="1"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:RelativeSourceViewModel}}, Path=BuyCommand}"
+                                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
+                                            TextColor="{Binding Color}"
+                                            BorderColor="{Binding Color}"
+                                            Text="{Binding Price, StringFormat='{0:C}'}"
+                                            Style="{StaticResource BuyButtonStyle}"/>
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

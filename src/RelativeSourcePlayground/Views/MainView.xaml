@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RelativeSourcePlayground.Views.MainView"
+    xmlns:views="clr-namespace:RelativeSourcePlayground.Views"
+    Title="RelativeSource Playground">
+    <ContentPage.Content>
+        <Grid
+            Padding="12">
+              <TableView
+                  Intent="Menu">
+                  <TableRoot>
+                      <TableSection
+                          Title="Relative Bindings">
+                          <TextCell
+                              Text="Relative bindings to self"
+                              Detail="Define the binding source using Self mode"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:RelativeSourceSelfView}" />
+                          <TextCell
+                              Text="Relative bindings to an ancestor"
+                              Detail="Define the binding source using FindAncestor mode"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:RelativeSourceFindAncestorView}" />
+                          <TextCell
+                              Text="Relative bindings to a templated parent"
+                              Detail="Define the binding source using TemplatedParent mode"
+                              Command="{Binding NavigateCommand}"
+                              CommandParameter="{x:Type views:RelativeSourceTemplatedParentView}" />              
+                      </TableSection>
+                  </TableRoot>
+              </TableView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
